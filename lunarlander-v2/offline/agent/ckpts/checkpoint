@@ -1,2 +1,0 @@
-model_checkpoint_path: "dqn_500000.ckpt"
-all_model_checkpoint_paths: "dqn_500000.ckpt"
