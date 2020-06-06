@@ -15,10 +15,10 @@ This repository is the official implementation of the paper `A Supervised Learni
 - random
 
 ## SALE package Overview
-- models: network structures
-- agents: DQN, MultiHeadDQN, QR-DQN agents
-- replay_buffers: basic and priporitized replay buffers
-- algos: behavior cloning, density estimator, advantage learner, fitted Q evaluation, etc
+- `models`: network structures
+- `agents`: DQN, MultiHeadDQN, QR-DQN agents
+- `replay_buffers`: basic and priporitized replay buffers
+- `algos`: behavior cloning, density estimator, advantage learner, fitted Q evaluation, etc
 
 ## Reproduce simulation results
 ### Synthetic data
@@ -27,3 +27,7 @@ This repository is the official implementation of the paper `A Supervised Learni
 -  ```python plot_ckpts_avg_figs.py & ``` and ```python plot_ckpts_last_figs.py &``` to generate figures in our paper.
 ### Real data based simulation
 - run the scripts under realdata after putting `trajs.pkl` of real data in the `realdata/data` folder. `trajs.pkl` are a list of list of transitions `(s,a,r,s',done)`
+
+#### Thanks to Repos:
+- https://github.com/google-research/batch_rl
+- https://github.com/ray-project/ray
