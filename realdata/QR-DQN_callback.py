@@ -33,7 +33,7 @@ def one_step(seed):
     np.random.seed(seed)
     tf.random.set_seed(seed)
     
-    path = 'data/callback/trajs_city_id_5_reward_type_4.pkl'
+    path = 'data/callback/trajs.pkl'
     nfolds = 5
     n_splits = 5
     ckpts = (np.arange(10) + 1)*5000
@@ -134,5 +134,5 @@ pool = mp.Pool(10)
 rets = pool.map(one_step, range(10))
 pool.close()
 
-with open(save_path + 'rets_qr-dqn_callback_5_4.pkl', 'wb') as f:
+with open(save_path + 'rets_qr-dqn_callback.pkl', 'wb') as f:
     pickle.dump(rets, f)

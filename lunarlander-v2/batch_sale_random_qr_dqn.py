@@ -30,7 +30,7 @@ from sale.algos.density_ratio import VisitationRatioModel
 
 from collections import defaultdict
 
-def set_config(kf, lr=5e-4, decay_step=int(10e4), max_train_step=int(20e4), hidden_size=[256, 256]):
+def set_config(kf, lr=5e-4, decay_step=int(1e5), max_train_step=int(2e5), hidden_size=[256, 256]):
     config['online'] = False
     config['hiddens'] = hidden_size
     config['lr'] = lr
@@ -48,7 +48,7 @@ def compare_within_ckpt(kf, bc, config, working_directory,
                         num_trajectories = 200,
                         agent_name = 'dqn',
                         num_kf =2,
-                       replica=1):
+                        replica=1):
     # 0 for sale, 1 for dml, 2 for single agent
     ckpt_result = defaultdict(list)
 
@@ -65,7 +65,7 @@ def compare_within_ckpt(kf, bc, config, working_directory,
             agent_idx.load(kf.ckpt_paths[idx] + '{}_{}.ckpt'.format(agent_name, ckpt))
             agents.append(agent_idx)
 
-        states, qvalues, qtildes = kf.update_q(agents, bc, None)
+        states, qvalues, qtildes = kf.update_q(agents, bc)
 
         advs1 = qvalues - qvalues.mean(axis=1, keepdims=True)
         adv_learner1 = AdvantageLearner()
@@ -128,7 +128,8 @@ def compare_within_ckpt(kf, bc, config, working_directory,
         print('Recording check point results...')
 
     ckpt_result_pdf = pd.DataFrame(ckpt_result)
-    ckpt_result_pdf = ckpt_result_pdf[['sale_mean_reward', 'dml_mean_reward', 'single_agent_mean_reward'] + ['cv{}'.format(i) for i in range(num_kf)]]
+    ckpt_result_pdf = ckpt_result_pdf[['sale_mean_reward', 'dml_mean_reward', 
+                                       'single_agent_mean_reward'] + ['cv{}'.format(i) for i in range(num_kf)]]
     
     file_directory = os.path.join(working_directory, 'csv')
     if not os.path.isdir(file_directory):
@@ -237,5 +238,4 @@ if __name__ == "__main__":
             strategy = 'random',
             agent_name = 'qr_dqn',
             n_trajs=200,
-            n_splits=2
-        )
+            n_splits=2)
