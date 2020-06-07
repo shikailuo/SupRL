@@ -33,7 +33,7 @@ we assume that the forward and backward of network complexity is `S`
 - step 2: training `L` DQN agents, batch size `B_1`, training steps `I_1`, total `O(L * I_1 * B_1 * S)`
 - step 3: training `L` density estimators, batch size `B_2`, training steps `I_2`, total `O(L * I_2 * B_2^4 * S)`
 - step 4: pseudo Q computations, batch size `B_3`, total `O(B_3 * N * T * A * S)`, where `N` number of trajs, `T` average length of trajs, `A` number of actions.
-- step 5: training tau, total `O(I_4 * B_4 * S)`
+- step 5: training tau, batch size `B_4`, training steps `I_4`, total `O(I_4 * B_4 * S)`
 
 #### Thanks to Repos:
 - https://github.com/google-research/batch_rl
