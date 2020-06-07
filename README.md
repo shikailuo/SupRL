@@ -26,6 +26,7 @@ This repository is the official implementation of the paper `A Supervised Learni
 - copy the `trajs_qr_dqn.pkl` under `online` folder produced by the first step to  `dqn_2_200/random/` folder, and run ```python batch_sale_random_dqn.py &``` (around 20 hours without GPU support). This will generate DQN offline training results. Similarly, we can obtain DDQN, QR-DQN results, when we use random or the first 200 trajectories, our results are given in `lunarlander-v2/plot_figs`.
 -  ```python plot_ckpts_avg_figs.py & ``` and ```python plot_ckpts_last_figs.py &``` to generate figures in our paper.
 ### Real data based simulation
+- due to the data confidentiality agreement, we cannot provide the real datasets. However, we do provide simulated data that minic the real dataset
 - run the scripts under realdata after putting `trajs.pkl` of real data in the `realdata/data` folder. `trajs.pkl` are a list of list of transitions `(s,a,r,s',done)`
 
 ### Computational complexity
